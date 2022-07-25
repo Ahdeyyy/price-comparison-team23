@@ -37,7 +37,7 @@ def product_detail(request,id,product):
     else:
             comment_form = CommentForm()
 
-    return render(request,'price_compare/product/detail.html',
+    return render(request,'product/detail.html',
                     {
                         'product':product,
                         'comments':comments,
@@ -51,4 +51,4 @@ def product_detail(request,id,product):
 class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
-    template_name = 'price_compare/product/list.html'
+    template_name = 'product/list.html'
