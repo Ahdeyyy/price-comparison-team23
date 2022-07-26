@@ -1,11 +1,13 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import CommentForm , UserRegistrationForm ,LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
 from .models import Product 
 from .scraper.jumia import get_jumia_product
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 # Create your views here.
 
@@ -54,6 +56,8 @@ class ProductListView(ListView):
     context_object_name = 'products'
     template_name = 'product/list.html'
 
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -62,14 +66,18 @@ def user_login(request):
             user = authenticate(request,
                 username=cd['username'],
                 password=cd['password']
-                )
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
+               )
+            # username=request.POST.get('username')
+            # password=request.POST.get('password')
+            #user=authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                
+                login(request, user)
+                return HttpResponse('You have Succefully LoggedIn')
+           
 
-                else:
-                    return HttpResponse('disabled account')
+            else:
+                return HttpResponse('disabled account')
 
         else:
             return HttpResponse('invalid login')
@@ -81,7 +89,10 @@ def user_login(request):
 
 
 
+# def register(request):
+#     return render(request,'registration/login.html',{'form': form})
 def register(request):
+    registered=False
     if request.method=='POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -92,3 +103,8 @@ def register(request):
     else:
         form=UserRegistrationForm()       
     return render(request,'registration/register.html',{'form':form})
+              
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('landing'))
