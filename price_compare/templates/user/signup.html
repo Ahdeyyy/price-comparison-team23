@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  {% comment %} <link rel="stylesheet" type="text/css" href="static url('/css/index.css')"> {% endcomment %}
+  <title>Signup</title>
+</head>
+<body>
+<div class="jumbotron">
+    {% if registered %}
+    <h1 align=" 'center"> {{user.username}} You are succeefully Registered, Thank you </h1>
+    {% else %}
+
+    <h2 align="center",color=grey>WELCOME TO REGISTRATION PAGE</h2>
+    <form class="form-control"  method="POST">
+    
+      {% csrf_token %}
+      {{show.as_p}}
+      <input type="submit" name="" value="Register" class="btn btn-success">      
+    </form>
+    {% endif %}

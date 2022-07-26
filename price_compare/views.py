@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import CommentForm
+from .forms import CommentForm , UserForm
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
 from .models import Product 
@@ -52,3 +52,19 @@ class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'product/list.html'
+
+def UserView(request):
+    registered=False
+    if request.method=='POST':
+        form=UserForm(data=request.POST)
+        if form.is_valid():
+            user=form.save()
+            user.set_password(user.password)
+            user.save()
+            return HttpResponse('You have Succefully Registered')
+           
+        else:
+            print(form.errors)
+    else:
+        form=UserForm()       
+    return render(request,'user/signup.html',{'show':form,'registered':registered})
