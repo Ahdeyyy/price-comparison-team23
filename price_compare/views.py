@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import CommentForm , UserForm ,LoginForm
+from .forms import CommentForm , UserRegistrationForm ,LoginForm
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
@@ -81,18 +81,14 @@ def user_login(request):
 
 
 
-def UserView(request):
-    registered=False
+def register(request):
     if request.method=='POST':
-        form=UserForm(data=request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user=form.save()
-            user.set_password(user.password)
+            user = form.save(commit = False)
+            user.set_password(form.cleaned_data['password'])
             user.save()
-            return HttpResponse('You have Succefully Registered')
-           
-        else:
-            print(form.errors)
+            return render(request,'registration/register_done.html',{'new_user': user})
     else:
-        form=UserForm()       
-    return render(request,'user/signup.html',{'show':form,'registered':registered})
+        form=UserRegistrationForm()       
+    return render(request,'registration/register.html',{'form':form})

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'price_compare',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_social_share',
-    'price_compare',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +75,6 @@ TEMPLATES = [
 LOGIN_REDIRECT_URL = 'price_compare:landing'
 LOGIN_URL = 'price_compare:login'
 LOGOUT_URL = 'price_compare:logout'
-LOGOUT_REDIRECT_URL = 'price_compare:landing'
 
 WSGI_APPLICATION = 'team23.wsgi.application'
 
