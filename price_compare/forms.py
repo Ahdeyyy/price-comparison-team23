@@ -8,6 +8,10 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ('username','body')
 
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
 class UserForm(forms.ModelForm):
     Password=forms.CharField(widget=forms.PasswordInput())
     class Meta: 

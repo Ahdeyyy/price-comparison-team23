@@ -3,11 +3,15 @@
 {% block title %}Product List{% endblock %}
 
 {% block content %}
+<span>
 {% if request.user.is_authenticated %}
-        <h4> Logged in {{ request.user.first_name }}</h4>
-{% else %}
-<h4>Not logged in </h4>
+        <a href="{% url 'price_compare:signup' %}">Sign up</a>
+        <a href="{% url 'price_compare:login' %}">Login</a>
+        {% else %}
+        <p> {{user.username}} <a href="{% url 'price_compare:logout' %}">Logout</a> </p>
+        <a href="{% url 'price_compare:login' %}">Login</a>
 {%endif%}
+</span>
 {% for product in products %}
 <div class="container">
         <div class="product">

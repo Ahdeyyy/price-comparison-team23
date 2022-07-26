@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import CommentForm , UserForm
+from .forms import CommentForm , UserForm ,LoginForm
+from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
 from .models import Product 
@@ -52,6 +53,33 @@ class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'product/list.html'
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request,
+                username=cd['username'],
+                password=cd['password']
+                )
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponse('Authenticated successfully')
+
+                else:
+                    return HttpResponse('disabled account')
+
+        else:
+            return HttpResponse('invalid login')
+            
+    else:
+        form = LoginForm()
+
+    return render(request,'user/login.html',{'form': form})
+
+
 
 def UserView(request):
     registered=False

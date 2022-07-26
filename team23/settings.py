@@ -72,6 +72,11 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'price_compare:landing'
+LOGIN_URL = 'price_compare:login'
+LOGOUT_URL = 'price_compare:logout'
+LOGOUT_REDIRECT_URL = 'price_compare:landing'
+
 WSGI_APPLICATION = 'team23.wsgi.application'
 
 
