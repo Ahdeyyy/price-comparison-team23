@@ -3,6 +3,11 @@
 {% block title %}Product List{% endblock %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+        <h4> Logged in {{ request.user.first_name }}</h4>
+{% else %}
+<h4>Not logged in </h4>
+{%endif%}
 {% for product in products %}
 <div class="container">
         <div class="product">
