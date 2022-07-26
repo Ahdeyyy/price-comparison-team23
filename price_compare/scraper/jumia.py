@@ -37,12 +37,12 @@ def get_jumia_product(product):
     }
     """
 
-    return {
-        'name': 'samsung',
-        'price': 'N 33,000',
-        'link': 'samsung/jumia.com', 
-        'img_src': 'somewher.jpg'
-    }
+    # return {
+    #     'name': 'samsung',
+    #     'price': 'N 33,000',
+    #     'link': 'samsung/jumia.com', 
+    #     'img_src': 'somewher.jpg'
+    # }
 
     prd_category = jumia_category(product['category'])
     phones = []
