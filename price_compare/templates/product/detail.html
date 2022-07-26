@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load social_share %}
+
 
 {% block title %}{{product.name}}{% endblock %}
 
@@ -44,4 +46,5 @@
         <p><input type="submit" value="Add comment"></p>
     </form>
 {% endif %}
+{% post_to_twitter "New Song: baby. Check it out!" twitter.com "Post to Twitter" %}
 {% endblock %}
