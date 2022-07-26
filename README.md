@@ -8,6 +8,9 @@ pip install -r requirements.txt
 
 1. Clone the repository
 2. Create a virtual environment and activate it
+```bash
+python -m venv [environment name]
+```
 3. Install the requirements
 
 ```bash
