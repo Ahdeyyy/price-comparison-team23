@@ -108,4 +108,8 @@ def register(request):
 @login_required
 def user_logout(request):
     logout(request)
+<<<<<<< HEAD
     return HttpResponseRedirect(reverse('landing'))
+=======
+    return HttpResponseRedirect(reverse('landing'))
+>>>>>>> 14ef5b0e7e2c997cff48afb56caeac0d263683fa

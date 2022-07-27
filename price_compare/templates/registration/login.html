@@ -12,11 +12,20 @@
   {% else %}
   <p>Please, use the following form to log-in:</p>
   {% endif %}
+<<<<<<< HEAD
   <div class="form-group">
   <form class="form-control" method="post">
   {{ form.as_p }}
   {% csrf_token %}
   <p><input type="submit" value="Log-in"><span> <a href="{% url 'price_compare:password_reset' %}">Forgot Password</span></p>
+=======
+  <div class="login-form">
+  <form action="{% url 'price_compare:login' %}" method="post">
+  {{ form.as_p }}
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  <p><input type="submit" value="Log-in"></p>
+>>>>>>> 14ef5b0e7e2c997cff48afb56caeac0d263683fa
   </form>
   </div>
   {% endblock %}
