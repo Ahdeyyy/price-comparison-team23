@@ -31,16 +31,6 @@
            </div>
          </div>
         </div>     
-=======
-{% block body_block %}
-<span>
-{% if authenticated %}
-        
-        <p> {{request.user.username}} <a href="{% url 'price_compare:logout' %}">Logout</a> </p>
-        {% else %}
-        <a href="{% url 'price_compare:register' %}">Sign up</a>
-        <a href="{% url 'price_compare:login' %}">Login</a>
->>>>>>> 14ef5b0e7e2c997cff48afb56caeac0d263683fa
 {%endif%}
 {% for product in products %}
 <div class="container">
