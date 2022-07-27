@@ -2,9 +2,9 @@
 
 {% block title %}Product List{% endblock %}
 
-{% block content %}
+{% block body_block %}
 <span>
-{% if request.user.is_authenticated %}
+{% if authenticated %}
         
         <p> {{request.user.username}} <a href="{% url 'price_compare:logout' %}">Logout</a> </p>
         {% else %}
@@ -12,7 +12,7 @@
         <a href="{% url 'price_compare:login' %}">Login</a>
 {%endif%}
 </span>
-{% for product in products %}
+{% for products in product %}
 <div class="container">
         <div class="product">
                 <a href="{{product.get_absolute_url}}" >
