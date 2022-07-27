@@ -12,7 +12,7 @@
         <a href="{% url 'price_compare:login' %}">Login</a>
 {%endif%}
 </span>
-{% for products in product %}
+{% for product in products %}
 <div class="container">
         <div class="product">
                 <a href="{{product.get_absolute_url}}" >
