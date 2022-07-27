@@ -4,7 +4,7 @@
 
 {% block title %}{{product.name}}{% endblock %}
 
-{% block content %}
+{% block body_block %}
     <h1>{{product.name}}</h1>
     <img src="{{product.img_src}}" alt="{{product.name}}">
     {% for platform in platforms %}
@@ -46,5 +46,5 @@
         <p><input type="submit" value="Add comment"></p>
     </form>
 {% endif %}
-{% post_to_twitter "Check this out !" product "Post to Twitter" %}
+{% post_to_twitter "New Song: baby. Check it out!" twitter.com "Post to Twitter" %}
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Comment
+from price_compare.models import Comment,Product
 
 class CommentForm(ModelForm):
     class Meta:
@@ -24,3 +24,8 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+class Productform(forms.Form):
+    class Meta:
+        model=Product
+        fields='__all__'

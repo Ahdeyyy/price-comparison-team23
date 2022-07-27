@@ -18,6 +18,9 @@ class Product(models.Model):
     name = models.CharField(max_length=614)
     brand = models.CharField(max_length=256)
     img_src = models.CharField(max_length=614)
+    
+    
+    #price = models.CharField(max_length=600)
     slug = models.SlugField(blank=True,max_length=124)
     category = models.CharField(max_length=32,choices=CATEGORY_CHOICES)
 
@@ -27,12 +30,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         #product_detail is the view
-        return reverse("price_compare:product_detail", args=[
-            self.id,
-            self.slug
-        ])
-    
-
+        return reverse("product_detail", kwargs={'slug':self.slug,'id':self.id})
     def __str__(self):
         return self.name
 
