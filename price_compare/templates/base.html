@@ -23,14 +23,11 @@
                   </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-<<<<<<< HEAD
-                      <a class="nav-link" href="{% url 'price_compare:logout' %}"><span size="30" class="alert alert-success" role="alert">Logout</span></a>
+                      <a class="nav-link" href="{% url 'price_compare:logout' %}"><span size="20" class="alert alert-success" role="alert">Logout</span></a>
                     </li>
-                    
-=======
+                 
                       <a class="nav-link" href="{% url 'price_compare:logout' %}"><span>Logout</span></a>
                     </li>
->>>>>>> 14ef5b0e7e2c997cff48afb56caeac0d263683fa
                     {% else %}
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'price_compare:register' %}"><span>Register</span></a> 
