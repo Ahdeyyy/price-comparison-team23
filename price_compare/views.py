@@ -36,6 +36,7 @@ def product_detail(request,id,product):
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment
             new_comment.product = product
+            new_comment.username = request.user.username
             new_comment.save()
     else:
             comment_form = CommentForm()

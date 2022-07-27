@@ -6,7 +6,7 @@
 <span>
 {% if authenticated %}
         
-        <p> {{user.username}} <a href="{% url 'price_compare:logout' %}">Logout</a> </p>
+        <p> {{request.user.username}} <a href="{% url 'price_compare:logout' %}">Logout</a> </p>
         {% else %}
         <a href="{% url 'price_compare:register' %}">Sign up</a>
         <a href="{% url 'price_compare:login' %}">Login</a>
