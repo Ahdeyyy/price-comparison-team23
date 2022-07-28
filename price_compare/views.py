@@ -1,7 +1,7 @@
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import CommentForm , UserRegistrationForm ,LoginForm
-from django.contrib.auth import authenticate, login , logout
+from .forms import CommentForm , UserRegistrationForm
+from django.contrib.auth import logout
 from django.db.models import Q
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render

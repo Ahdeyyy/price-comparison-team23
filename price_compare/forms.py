@@ -1,19 +1,12 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from price_compare.models import Comment,Product
+from price_compare.models import Comment
 
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-
-
-
-
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
