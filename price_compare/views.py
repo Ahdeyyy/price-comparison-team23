@@ -2,12 +2,12 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import CommentForm , UserRegistrationForm ,LoginForm
 from django.contrib.auth import authenticate, login , logout
+from django.db.models import Q
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, render
 from .models import Product 
 from .scraper.jumia import get_jumia_product
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 
 # Create your views here.
 
@@ -65,43 +65,18 @@ class ProductListView(ListView):
     context_object_name = 'products'
     template_name = 'product/list.html'
 
+class SearchResultView(ListView):
+    model = Product
+    template_name = 'product/search_result.html'
+    context_object_name = 'products'
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        list = Product.objects.filter(
+            Q(name__icontains=query) | Q(brand__icontains=query)
+        )
+        return list
 
-
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,
-                username=cd['username'],
-                password=cd['password']
-               )
-            # username=request.POST.get('username')
-            # password=request.POST.get('password')
-            #user=authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                
-                login(request, user)
-                return HttpResponse('You have Succefully LoggedIn')
-           
-
-            else:
-                return HttpResponse('disabled account')
-
-        else:
-            return HttpResponse('invalid login')
-            
-    else:
-        form = LoginForm()
-
-    return render(request,'user/login.html',{'form': form})
-
-
-
-# def register(request):
-#     return render(request,'registration/login.html',{'form': form})
 def register(request):
-    registered=False
     if request.method=='POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
