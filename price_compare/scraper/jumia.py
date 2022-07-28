@@ -64,7 +64,7 @@ def get_jumia_product(product):
             )
         page += 1
     for phone in phones:
-        if product['name'].lower() in phone['name'].lower() and product['brand'].lower() in phone['brand'].lower() and product['price'] in phone['price']:
+        if product['name'].lower() in phone['name'].lower() and product['brand'].lower() in phone['brand'].lower():
             return phone
 
 

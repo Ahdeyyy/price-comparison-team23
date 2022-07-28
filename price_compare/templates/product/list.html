@@ -33,7 +33,7 @@
 {% for product in products %}
 <div class="container">
         <div class="product">
-                <a href="{{get_absolute_url}}" >
+                <a href="{{product.get_absolute_url}}" >
                     <img src="{{product.img_src}}" alt="{{product.name}}">
                    <h2> {{product.name}} </h2>
                 </a>

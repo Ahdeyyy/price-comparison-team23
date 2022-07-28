@@ -38,6 +38,14 @@ def product_detail(request,id,product):
             new_comment.product = product
             new_comment.username = request.user.username
             new_comment.save()
+            return HttpResponseRedirect(f'{product.slug}',
+                    {
+                        'product':product,
+                        'comments':comments,
+                        'platforms':platforms,
+                        'new_comment':new_comment,
+                        'comment_form':comment_form
+                    },          )
     else:
             comment_form = CommentForm()
 
