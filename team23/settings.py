@@ -84,21 +84,7 @@ WSGI_APPLICATION = 'team23.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': '<db_name>',
-
-        'USER': '<username>',
-
-        'PASSWORD': '<password>',
-
-        'HOST': '<host>',
-
-        'PORT': '<port>',
-
-    }
+    
 }
 
 
