@@ -1,0 +1,1 @@
+web gunicorn team23.wsgi --log-file -
